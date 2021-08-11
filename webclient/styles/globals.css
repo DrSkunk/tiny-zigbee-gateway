@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  @apply bg-gray-900;
+}
+
+#__next {
+  @apply h-full;
+  @apply w-full;
+}
+
+@layer components {
+  .page {
+    max-width: 210mm;
+    max-height: min(297mm, calc(100vh - 48px));
+  }
+}
