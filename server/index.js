@@ -12,7 +12,7 @@ app.use(function (req, res, next) {
   next();
 });
 app.use(express.json());
-app.use(express.static(path.resolve(process.cwd(), '../next-webclient/out')));
+app.use(express.static(path.resolve(process.cwd(), '../webclient/out')));
 
 app.get('/api/config', (req, res) => {
   res.header('Content-Type', 'application/json');
@@ -30,7 +30,7 @@ app.post('/api/config', async (req, res) => {
 });
 
 app.listen(port, async () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`Webserver listening at http://localhost:${port}`);
   initMqtt();
   await initConfig();
   const config = await getConfig();

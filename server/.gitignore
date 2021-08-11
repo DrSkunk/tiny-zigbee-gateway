@@ -6,3 +6,5 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# Config will be generated on the first run
+schedulerConfig.json
