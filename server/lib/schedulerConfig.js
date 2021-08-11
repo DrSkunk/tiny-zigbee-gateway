@@ -33,9 +33,9 @@ const defaultConfig = {
   ],
 };
 
-async function initConfig() {
+async function initSchedulerConfig() {
   try {
-    const x = await fs.access(getConfigPath(), constants.R_OK);
+    await fs.access(getConfigPath(), constants.R_OK);
     await getConfig();
   } catch (error) {
     await fs.writeFile(getConfigPath(), JSON.stringify(defaultConfig, null, 2));
@@ -43,7 +43,7 @@ async function initConfig() {
 }
 
 function getConfigPath() {
-  return path.join(__dirname, 'schedulerConfig.json');
+  return path.join(process.cwd(), 'schedulerConfig.json');
 }
 
 async function getConfig() {
@@ -52,13 +52,13 @@ async function getConfig() {
 
 async function updateConfig(config) {
   // TODO validate config
-  fs.writeFile(getConfigPath(), JSON.stringify(config, null, 2), 'utf8');
+  await fs.writeFile(getConfigPath(), JSON.stringify(config, null, 2), 'utf8');
   broadcastConfig(config);
   scheduleJobs(config);
 }
 
 module.exports = {
-  initConfig,
+  initSchedulerConfig,
   getConfigPath,
   getConfig,
   updateConfig,

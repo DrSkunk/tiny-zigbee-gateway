@@ -1,0 +1,7 @@
+{
+  "port": 8080,
+  "mqttUrl": "mqtt://localhost:1883",
+  "presenceTopics": ["zigbee2mqtt/motion"],
+  "lightTopics": ["zigbee2mqtt/lamp/set"],
+  "configTopic": ["scheduler/config"]
+}

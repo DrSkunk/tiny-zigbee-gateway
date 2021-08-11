@@ -7,7 +7,7 @@ export async function getConfig() {
     return data.json();
   } catch (error) {
     console.error(error);
-    throw new Error(`Error while fetching config from server at ${configEndpoint}`);
+    throw new Error(`Fout tijdens het ophalen van de configuration van server ${configEndpoint}`);
   }
 }
 export async function setConfig(config) {
@@ -21,7 +21,7 @@ export async function setConfig(config) {
     });
   } catch (error) {
     console.error(error);
-    throw new Error(`Error while saving config on server at ${configEndpoint}`);
+    throw new Error(`Fout tijdens het opslaan van de configuratie op server ${configEndpoint}`);
   }
 }
 

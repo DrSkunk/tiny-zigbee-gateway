@@ -105,12 +105,18 @@ export default function App() {
 
   if (configError || saveError) {
     return (
-      <div className="flex flex-col w-screen h-screen justify-center items-center">
+      <div className="flex flex-col w-screen h-screen justify-center items-center gap-4">
         <MoonIcon className="w-32 h-32 text-red-500" />
         <div className="text-red-300 text-3xl max-w-xl">
           {configError && configError.toString()}
           {saveError && saveError.toString()}
         </div>
+        <button
+          className="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-md text-white"
+          onClick={() => setSaveError(null)}
+        >
+          Terug naar vorige pagina
+        </button>
       </div>
     );
   }
