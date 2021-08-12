@@ -1,6 +1,7 @@
 const fs = require('fs/promises');
 const constants = require('fs');
 const path = require('path');
+const log = require('./log');
 const { scheduleJobs } = require('./scheduler');
 const { broadcastConfig } = require('./mqtt');
 
@@ -53,6 +54,7 @@ async function getConfig() {
 async function updateConfig(config) {
   // TODO validate config
   await fs.writeFile(getConfigPath(), JSON.stringify(config, null, 2), 'utf8');
+  log.log(`saved config to ${getConfigPath()}`);
   broadcastConfig(config);
   scheduleJobs(config);
 }
