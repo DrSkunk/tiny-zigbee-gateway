@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 function warn(...message) {
   // Yellow
   console.warn('\x1b[33m%s', getTimestamp(), '- WARN -', ...message, '\x1b[0m');

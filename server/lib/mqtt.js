@@ -20,31 +20,42 @@ function initMqtt() {
     });
   });
 
-  client.on('disconnect', log.warn)
+  client.on('disconnect', log.warn);
 
-  client.on('error',log.error)
+  client.on('error', log.error);
 
   client.on('message', function (topic, message) {
     log.log('Received message', topic, message.toString());
-    const { occupance } = JSON.parse(message.toString());
-    if (occupance) {
+    const { occupancy } = JSON.parse(message.toString());
+    log.info('occupancy', occupancy);
+    if (occupancy) {
+      if (lightConfig.brightness === 0) {
+        log.info(`Brightness is set to 0, not turning on.`);
+        return;
+      }
       turnOnLight();
       if (timer) {
         clearTimeout(timer);
       }
-      timer = setTimeout(turnOffLight, lightConfig.duration);
+      timer = setTimeout(turnOffLight, lightConfig.duration * 1000);
     }
   });
 }
 
 function turnOnLight() {
+  log.info(
+    `Turning on light with brightess ${lightConfig.brightness} for ${lightConfig.duration} seconds`
+  );
   getServerConfig().lightTopics.forEach((lightTopic) => {
     client.publish(lightTopic, JSON.stringify({ brightness: lightConfig.brightness }));
   });
 }
 
 function turnOffLight() {
-  client.publish(lightTopic, JSON.stringify({ brightness: 0 }));
+  log.info('Turning off light');
+  getServerConfig().lightTopics.forEach((lightTopic) => {
+    client.publish(lightTopic, JSON.stringify({ brightness: 0 }));
+  });
 }
 
 function broadcastConfig(config) {

@@ -14,8 +14,6 @@ const { getServerConfig } = require('./serverConfig');
 let app = null;
 
 function initHttp() {
-  console.log('serverConfig', getServerConfig());
-
   if (app) {
     throw new Error('HTTP server already initialized');
   }
