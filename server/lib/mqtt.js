@@ -20,6 +20,10 @@ function initMqtt() {
     });
   });
 
+  client.on('disconnect', log.warn)
+
+  client.on('error',log.error)
+
   client.on('message', function (topic, message) {
     log.log('Received message', topic, message.toString());
     const { occupance } = JSON.parse(message.toString());

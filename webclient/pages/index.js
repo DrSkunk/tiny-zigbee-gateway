@@ -151,7 +151,7 @@ export default function App() {
               </span>
             </label>
           </div>
-          <div className="flex flex-wrap gap-2 mt-4">{durationButtons}</div>
+          <div className="grid grid-cols-2 lg:grid-cols-5 gap-2 mt-4">{durationButtons}</div>
         </div>
         {weekConfigs.map((weekConfig, index) => (
           <WeekConfig
