@@ -9,6 +9,10 @@ Connections are as follows:
 
 ## Software steps
 
+## Buildroot
+https://buildroot.org/
+rootfs read-only laat, voor de sd card wear
+
 ### UART on GPIO
 
 Enable UART on GPIO: Add `enable_uart=1` to `/boot/config.txt`
